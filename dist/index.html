@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Weather App</title>
+  <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+  
+</head>
+
+<body>
+
+ 
+<input id='cityName' type='text' placeholder="city">
+<button id='get'>get</button>
+
+<button id='getFromDB'>get from db</button>
+
+
+<script id="weather-template" type="text/x-handlebars-template">
+    
+    {{#each allCityData}} 
+    <div class='city'>
+        <button class='save' onclick="onCityClick({{clickHelper this}}" >save</button>
+        <button class='remove'>remove</button>
+        <p class='name'>{{name}} </p>
+        <p class='temperature'>{{temperature}} </p>
+        <p class='condition'>{{condition}} </p>
+        <img class='icon' src={{conditionPic}} ></img>
+    </div>
+  {{/each}}
+      
+</script>
+
+
+
+
+<div class='city-container'></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
+  <script src="./jquery/dist/jquery.js"></script>
+  <script src='model.js'></script>
+  <script src='Renderer.js'></script>
+  
+  <script src='main.js'></script>
+</body>
+
+</html>
