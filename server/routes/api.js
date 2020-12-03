@@ -28,6 +28,7 @@ router.get('/cities', async (req, res) => {
 router.post('/city', async (req, res) => {
     let addCity = new City({ ...req.body })
     await addCity.save()
+    console.log('do u save????');
     res.send(addCity)
 })
 

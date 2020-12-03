@@ -21,23 +21,26 @@ class DataManager {
         //console.log(cityName);
         //console.log(this.cityData);
 
-        this.cityData.forEach((city) => {
-            if(city.name === cityName){
-               // console.log('i did it!!!!');
-               return $.post(`/city`, city)
-            }
-        })
-        // let relCity = this.cityData.find(city => {city.name === cityName})
-        // console.log(relCity);
-        // return $.post(`/city`, relCity, (data => console.log(data)))
+        // this.cityData.forEach((city) => {
+        //     if(city.name === cityName){
+        //        // console.log('i did it!!!!');
+        //        return $.post(`/city`, city)
+        //     }
+        // })
+        let relCity = this.cityData.find(city => city.name === cityName)
+       // console.log(relCity);
+         $.post(`/city`, relCity, (data => console.log(data)))
     }
 
-    removeCity(cityName) {
-        $.ajax({
+  async  removeCity(cityName) {
+      await  $.ajax({
             url: `/city/${cityName}`,
             type: 'DELETE',
             success: function (result) {
-                //console.log('deletedmodel');
+                console.log(this.cityData);
+                console.log(result);
+                // this.cityData.find(city => result.name === city.name).remove()
+                // console.log(result);
             }
         });
     }

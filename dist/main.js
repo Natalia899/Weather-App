@@ -15,35 +15,28 @@ $('#get').on('click', async ()=>{
     render.renderData(manager.cityData)
 })
 
-$('#getFromDB').on('click', async () => {
-    let cities = await manager.getDataFromDB()
-   // console.log(cities);
+// $('#getFromDB').on('click', async () => {
+//     let cities = await manager.getDataFromDB()
+//    // console.log(cities);
+// })
+
+$('.city-container').on('click', '.save', function() {
+const cityName = $(this).closest('.city').find('.name').text()
+manager.saveCity(cityName)
 })
 
-
-Handlebars.registerHelper('clickHelper', function(city) {
-	return city
-});
-
-const onCityClick = (city) => {
-    let cityName = city.name
+$('.city-container').on('click', '.remove', async function () {
+    const cityName = $(this).closest('.city').find('.name').text()
     console.log(cityName);
-    console.log('do u know cityName?');
-    manager.saveCity(cityName)
-};
 
-
-
-// $('.save').on('click', ()=> {
-//     let cityName = $(this).closest(".city").find(".name").text()
-//     console.log(cityName);
-//     console.log('do u know cityName?');
-//     manager.saveCity(cityName)
-// }
-// )
-
-$('.remove').on('click', ()=>{
-    let cityName = $('#cityName').val()
-    manager.removeCity(cityName)
-    //console.log('deleted');
-})
+   await manager.removeCity(cityName)
+    await manager.getDataFromDB()
+    render.renderData(manager.cityData)
+    })
+    
+// $('.remove').on('click', ()=>{
+//     let cityName = $('#cityName').val()
+//     manager.removeCity(cityName)
+//     render.renderData(manager.cityData)
+//     //console.log('deleted');
+// })
