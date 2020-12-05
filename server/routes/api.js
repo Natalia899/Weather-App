@@ -32,4 +32,21 @@ router.delete('/city/:cityName', async (req, res) => {
     res.send(deleteCity)
 })
 
+router.put('/city/:cityName', async (req, res) => {
+    const { cityName } = req.params
+    const update = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=edbe3adfc1cea67246077a9493f1ea44`)
+    const updatedCity = await City.findOneAndUpdate({ name: update.data.name }, {
+        $set: {
+            temperature: Math.floor(update.data.main.temp - 273.15),
+            condition: update.data.weather[0].description,
+            conditionPic: `http://openweathermap.org/img/wn/${update.data.weather[0].icon}@2x.png`
+        }
+    },
+        { useFindAndModify: false })
+
+    const updatedDb = await City.find({ name: updatedCity.name })
+    console.log(updatedDb);
+    res.send(updatedDb)
+})
+
 module.exports = router

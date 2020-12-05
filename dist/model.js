@@ -29,4 +29,23 @@ class DataManager {
             }
         });
     }
+
+    async updateCity(cityName) {
+        const newInfo = await $.ajax({
+            url: `/city/${cityName}`,
+            type: 'PUT',
+            success: function (result) {
+                console.log(result);
+                console.log('i did the update');
+
+            }
+        })
+        for (let i in this.cityData) {
+            if (i.name === cityName) {
+                this.cityData.splice(i, 1)
+                this.cityData.push(newInfo[0])
+
+            }
+        }
+    }
 }

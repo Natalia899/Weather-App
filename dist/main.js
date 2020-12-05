@@ -25,3 +25,9 @@ $('.city-container').on('click', '.remove', async function () {
     await manager.getDataFromDB()
     render.renderData(manager.cityData)
 })
+
+$('.city-container').on('click', '.refresh', function () {
+    const cityName = $(this).closest('.city').find('.name').text()
+    manager.updateCity(cityName)
+})
+
