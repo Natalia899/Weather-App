@@ -31,3 +31,21 @@ $('.city-container').on('click', '.refresh', function () {
     manager.updateCity(cityName)
 })
 
+
+
+
+//Extension2 (not finished)
+// const successCallback = function (postion){
+// 	console.log(postion)
+// }
+// const errorCallback = function (postion){
+// 	console.log(postion)
+// }
+
+// const geolocation = function(successCallback, errorCallback){
+// 	navigator.geolocation.getCurrentPosition(successCallback, errorCallback)
+// }
+
+// geolocation(successCallback, errorCallback)
+
+

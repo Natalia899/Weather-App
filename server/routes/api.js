@@ -49,4 +49,17 @@ router.put('/city/:cityName', async (req, res) => {
     res.send(updatedDb)
 })
 
+router.get('/location/:x/:y', async (req, res) => {
+    const {x,y} = req.params
+    console.log(x);
+    console.log(y);
+   try {
+     const weather = await axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=32.3180586&lon=34.8513686&appid=edbe3adfc1cea67246077a9493f1ea44`)
+     res.status(200).json(weather)
+   } 
+  catch(err) {
+     res.status(404).json(err) 
+  }
+})
+
 module.exports = router
