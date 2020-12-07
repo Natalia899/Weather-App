@@ -8,8 +8,8 @@ const loadPage = async () => {
 loadPage()
 
 $('#get').on('click', async () => {
-    let cityName = $('#cityName').val()
-    let data = await manager.getCityData(cityName)
+    const cityName = $('#cityName').val()
+    const data = await manager.getCityData(cityName)
     render.renderData(manager.cityData)
 })
 
@@ -20,7 +20,6 @@ $('.city-container').on('click', '.save', function () {
 
 $('.city-container').on('click', '.remove', async function () {
     const cityName = $(this).closest('.city').find('.name').text()
-    console.log(cityName);
     await manager.removeCity(cityName)
     await manager.getDataFromDB()
     render.renderData(manager.cityData)

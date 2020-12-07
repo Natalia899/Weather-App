@@ -16,9 +16,9 @@ class DataManager {
         return newCity
     }
 
-    saveCity(cityName) {
-        let relCity = this.cityData.find(city => city.name === cityName)
-        $.post(`/city`, relCity, (data => console.log(data)))
+    async saveCity(cityName) {
+        let relCity = await this.cityData.find(city => city.name === cityName)
+        $.post(`/city`, relCity)
     }
 
     async removeCity(cityName) {
@@ -35,17 +35,10 @@ class DataManager {
             url: `/city/${cityName}`,
             type: 'PUT',
             success: function (result) {
-                console.log(result);
-                console.log('i did the update');
-
             }
         })
-        for (let i in this.cityData) {
-            if (i.name === cityName) {
-                this.cityData.splice(i, 1)
-                this.cityData.push(newInfo[0])
-
-            }
-        }
+        let cityIndex = this.cityData.findIndex(i => i.name === cityName)
+        this.cityData.splice(cityIndex, 1)
+        this.cityData.push(newInfo[0])
     }
 }
