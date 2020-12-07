@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Weather App</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+
+<body>
+    <!-- <a class="waves-effect waves-light btn">button</a> -->
+<div id='search-container'>
+    <input id='cityName' type='text' placeholder="city">
+    <button id='get'>Search</button>
+</div>
+    <!-- <button id='getFromDB'>get from db</button> -->
+<div class='city-container'></div>
+    <script id="weather-template" type="text/x-handlebars-template">
+    {{#each allCityData}} 
+    <div class='city'>
+        <p class='name'>{{name}}</p>
+        <span class='save'>
+            <i class="tiny material-icons">add_circle</i>
+        </span>
+        <span class='remove'>
+            <i class="tiny material-icons">remove_circle</i>
+        </span><br>
+        <span class='temperature'>{{temperature}} </span>
+        <span class='condition'>{{condition}} </span>
+        <img class='icon' src={{conditionPic}} ></img>
+        <span class='refresh'>
+            <i class="tiny material-icons">autorenew</i>
+        </span>
+
+    </div>
+  {{/each}}
+</script>
+    <!-- <script type="text/javascript" src="./materialize-css/dist/materialize-css"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script> -->
+    <script src='./handlebars/dist/handlebars.js'></script>
+    <script src="./jquery/dist/jquery.js"></script>
+    <script src='model.js'></script>
+    <script src='Renderer.js'></script>
+    <script src='main.js'></script>
+</body>
+
+</html>
